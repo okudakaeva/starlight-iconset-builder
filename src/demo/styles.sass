@@ -1,0 +1,213 @@
+@use "../lib/index" as *
+
+body
+	background-color: #ffffff
+	color: $sib-obsidian-mist
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+	margin: 0
+	padding: 0
+
+.block
+	margin: 0 0 32px
+	max-width: 100%
+
+	h1,
+	h2
+		flex-basis: 100%
+		margin: 0
+		text-transform: capitalize
+		padding: 12px 16px
+
+	h2
+		margin-top: 12px
+		font-size: 18px
+		color: $sib-twilight-slate
+
+.block-wrapper
+	display: flex
+	flex-wrap: wrap
+	box-shadow: 0 2px 12px rgba($sib-obsidian-mist, .12)
+	+sib-inline-svg('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="400"><defs><pattern id="a" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0 0h10v10H0z" opacity=".06"/><path fill="#fff" d="M10 0h10v10H10z"/><path d="M10 10h10v10H10z" opacity=".06"/><path fill="#fff" d="M0 10h10v10H0z"/></pattern></defs><rect width="100%" height="100%" fill="url(#a)"/></svg>')
+
+.item
+	font-size: 13px
+	width: 180px
+	height: 68px
+	box-sizing: border-box
+
+.color
+	display: flex
+	flex-direction: column
+	justify-content: center
+	position: relative
+	transition: transform .12s ease
+
+	&:hover
+		transform: translateY(-2px)
+		z-index: 2
+
+	.apply-fill-btn
+		position: absolute
+		top: 4px
+		right: 6px
+		font-size: 11px
+		padding: 2px 6px
+		border-radius: 4px
+		border: 1px solid currentColor
+		background: transparent
+		color: inherit
+		opacity: .65
+		cursor: pointer
+
+		&:hover
+			opacity: 1
+
+.icon
+	text-align: center
+	border: 1px solid rgba($sib-obsidian-mist, .12)
+	border-bottom: 0
+	position: relative
+	overflow: hidden
+	box-sizing: border-box
+	height: 112px
+	padding-top: 12px
+
+	.icon-wrapper
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		min-width: 24px
+		min-height: 24px
+		padding: 8px
+		border-radius: 6px
+		background-color: rgba($sib-obsidian-mist, .06)
+
+	.badge-color
+		position: absolute
+		top: 6px
+		right: 6px
+		font-size: 10px
+		padding: 1px 5px
+		border-radius: 4px
+		background-color: $sib-lilac-haze
+		color: $sib-obsidian-mist
+
+	.label
+		position: absolute
+		width: 100%
+		bottom: 0
+		left: 0
+		background-color: #ffffff
+		box-sizing: border-box
+		border-top: 1px solid rgba($sib-obsidian-mist, .12)
+		height: 44px
+		z-index: 1
+
+.label
+	padding: 4px 6px
+	cursor: pointer
+	white-space: nowrap
+	overflow: hidden
+	text-overflow: ellipsis
+
+.size
+	color: $sib-dusk-pebble
+	font-size: 11px
+
+	&.warning-size
+		color: $sib-terracotta-clay
+		font-weight: 600
+
+.font-white
+	color: #ffffff
+
+.font-black
+	color: $sib-obsidian-mist
+
+#app
+	padding-top: 68px
+
+.search
+	padding: 12px 16px
+	position: fixed
+	background: #ffffff
+	width: 100%
+	box-sizing: border-box
+	z-index: 1000
+	top: 0
+	left: 0
+	border-bottom: 1px solid $sib-moonlight-cloud
+	display: flex
+	gap: 12px
+	align-items: center
+
+	.search-box
+		position: relative
+		flex: 1
+
+		&:after
+			content: ''
+			position: absolute
+			top: 50%
+			right: 12px
+			width: 18px
+			height: 18px
+			transform: translateY(-50%)
+			background-repeat: no-repeat
+			+sib-inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#737994" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>')
+
+	.search-input
+		width: 100%
+		box-sizing: border-box
+		line-height: 28px
+		border: 1px solid $sib-moonlight-cloud
+		padding: 4px 38px 4px 12px
+		border-radius: 6px
+		font-size: 14px
+		color: $sib-obsidian-mist
+		outline: none
+
+		&:focus
+			border-color: $sib-cornflower-dream
+
+	.active-fill-pill
+		display: inline-flex
+		align-items: center
+		gap: 8px
+		padding: 6px 12px
+		border-radius: 6px
+		background-color: $sib-moonlight-cloud
+		font-size: 13px
+		white-space: nowrap
+
+		.swatch
+			width: 14px
+			height: 14px
+			border-radius: 50%
+			border: 1px solid rgba($sib-obsidian-mist, .25)
+
+.nothing-found
+	padding: 48px 24px
+	text-align: center
+	color: $sib-dusk-pebble
+	font-size: 15px
+
+.highlight
+	background-color: rgba($sib-butter-glow, .9)
+	padding: 1px 2px
+	border-radius: 2px
+
+.noty-overlay
+	position: fixed
+	z-index: 1000
+	top: 72px
+	right: 16px
+
+	.noty
+		padding: 10px 14px
+		background-color: $sib-sage-meadow
+		box-shadow: 0 4px 14px rgba($sib-obsidian-mist, .2)
+		color: $sib-obsidian-mist
+		border-radius: 6px
+		font-size: 13px
+		display: inline-block

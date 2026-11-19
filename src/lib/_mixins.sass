@@ -1,0 +1,58 @@
+@use "sass:list"
+@use "sass:map"
+@use "sass:meta"
+@use "colors" as *
+@use "utils" as *
+@use "icons" as *
+
+$sib-custom-icons: () !default
+$sib-all-icons: map.merge($sib-icons-list, $sib-custom-icons)
+
+@function -sib-get-icon-meta($icon-path)
+	$parts: -sib-str-split($icon-path, '/')
+	@if list.length($parts) != 2
+		@error "Starlight Iconset Builder: Icon path must be 'set/name', got '#{$icon-path}'."
+
+	$set-name: list.nth($parts, 1)
+	$icon-name: list.nth($parts, 2)
+
+	$set: map.get($sib-all-icons, $set-name)
+	@if not $set
+		@error "Starlight Iconset Builder: Icon set '#{$set-name}' not found."
+
+	$icon: map.get($set, $icon-name)
+	@if not $icon
+		@error "Starlight Iconset Builder: Icon '#{$icon-name}' not found in set '#{$set-name}'."
+
+	@return $icon
+
+@function sib-icon-width($icon-path)
+	$icon: -sib-get-icon-meta($icon-path)
+	@return map.get($icon, 'width')
+
+@function sib-icon-height($icon-path)
+	$icon: -sib-get-icon-meta($icon-path)
+	@return map.get($icon, 'height')
+
+@function -sib-icon-url($icon-path, $fill: $sib-obsidian-mist)
+	$icon: -sib-get-icon-meta($icon-path)
+	$fn: map.get($icon, 'fn')
+	$resolved-fill: -sib-resolve-color($fill)
+	$svg-raw: meta.call($fn, $resolved-fill)
+	@return url("data:image/svg+xml;charset=utf-8,#{-sib-url-encode($svg-raw)}")
+
+=sib-inline-svg($svg-raw, $important: false)
+	$imp: if($important, !important, null)
+	background-image: url("data:image/svg+xml;charset=utf-8,#{-sib-url-encode($svg-raw)}") $imp
+
+=sib-icon($icon-path, $fill: $sib-obsidian-mist, $dims: true, $center: true, $important: false)
+	$imp: if($important, !important, null)
+	background-image: -sib-icon-url($icon-path, $fill) $imp
+	background-repeat: no-repeat $imp
+
+	@if $center
+		background-position: center $imp
+
+	@if $dims
+		width: sib-icon-width($icon-path) $imp
+		height: sib-icon-height($icon-path) $imp

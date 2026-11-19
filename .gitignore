@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Generated demo artifacts (rebuilt via npm run build)
+src/demo/generated/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & local cache
+.env
+.env.local
+.cache/
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs & editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

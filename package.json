@@ -1,0 +1,56 @@
+{
+  "name": "starlight-iconset-builder",
+  "version": "1.0.0",
+  "description": "Zero-config SVG iconset generator and inline data-URI mixin library for Sass with dynamic fill support",
+  "keywords": [
+    "sass",
+    "scss",
+    "svg",
+    "icons",
+    "iconset",
+    "data-uri",
+    "inline-svg",
+    "design-system",
+    "frontend"
+  ],
+  "author": "Oksana Kudakaeva <https://github.com/okudakaeva>",
+  "license": "MIT",
+  "homepage": "https://github.com/starlight-iconset-builder#readme",
+  "bugs": {
+    "url": "https://github.com/starlight-iconset-builder/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starlight-iconset-builder.git"
+  },
+  "main": "src/lib/index.sass",
+  "sass": "src/lib/index.sass",
+  "style": "src/lib/index.sass",
+  "bin": {
+    "sib": "./bin/cli.js",
+    "sib-build": "./bin/cli.js",
+    "starlight-iconset-builder": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/core-generator.js",
+    "src/lib/",
+    "!src/lib/sets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build-demo.js && sass src/demo/styles.sass dist/generated/demo.css --no-source-map",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "sass": "^1.33.0"
+  },
+  "dependencies": {
+    "svgo": "^3.3.2",
+    "svgson": "^5.3.1"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

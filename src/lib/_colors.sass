@@ -1,0 +1,44 @@
+@use "sass:map"
+@use "sass:meta"
+
+$sib-obsidian-mist:    #232634
+$sib-twilight-slate:   #414559
+$sib-dusk-pebble:      #737994
+$sib-moonlight-cloud:  #E6E9EF
+$sib-starlight-cream:  #FFF8E7
+$sib-butter-glow:      #F9E2AF
+$sib-honey-amber:      #F5C28B
+$sib-peach-horizon:    #FAB387
+$sib-morning-dew:      #D9F0FF
+$sib-sky-breeze:       #89DCEB
+$sib-cerulean-mist:    #74C7EC
+$sib-cornflower-dream: #8CAAEE
+$sib-mint-whisper:     #D5F5E3
+$sib-seafoam-leaf:     #94E2D5
+$sib-sage-meadow:      #A6D189
+$sib-moss-velvet:      #81C8BE
+$sib-lilac-haze:       #EAE2F8
+$sib-lavender-silk:    #CA9EE6
+$sib-wisteria-bloom:   #BABBF1
+$sib-plum-velour:      #9A7AA0
+$sib-blush-petal:      #FCE2E6
+$sib-rose-quartz:      #F4B8E4
+$sib-flamingo-soft:    #EA999C
+$sib-terracotta-clay:  #E78284
+
+$sib-custom-colors: () !default
+
+$sib-palette: ('obsidian-mist': $sib-obsidian-mist, 'twilight-slate': $sib-twilight-slate, 'dusk-pebble': $sib-dusk-pebble, 'moonlight-cloud': $sib-moonlight-cloud, 'starlight-cream': $sib-starlight-cream, 'butter-glow': $sib-butter-glow, 'honey-amber': $sib-honey-amber, 'peach-horizon': $sib-peach-horizon, 'morning-dew': $sib-morning-dew, 'sky-breeze': $sib-sky-breeze, 'cerulean-mist': $sib-cerulean-mist, 'cornflower-dream': $sib-cornflower-dream, 'mint-whisper': $sib-mint-whisper, 'seafoam-leaf': $sib-seafoam-leaf, 'sage-meadow': $sib-sage-meadow, 'moss-velvet': $sib-moss-velvet, 'lilac-haze': $sib-lilac-haze, 'lavender-silk': $sib-lavender-silk, 'wisteria-bloom': $sib-wisteria-bloom, 'plum-velour': $sib-plum-velour, 'blush-petal': $sib-blush-petal, 'rose-quartz': $sib-rose-quartz, 'flamingo-soft': $sib-flamingo-soft, 'terracotta-clay': $sib-terracotta-clay)
+
+$sib-colors: map.merge($sib-palette, $sib-custom-colors)
+
+@function -sib-resolve-color($color)
+  @if meta.type-of($color) == 'string' and map.has-key($sib-colors, $color)
+    @return map.get($sib-colors, $color)
+  @return $color
+
+@function -sib-color($name)
+  @if map.has-key($sib-colors, $name)
+    @return map.get($sib-colors, $name)
+  @warn "Starlight Iconset Builder: Color '#{$name}' not found in $sib-colors."
+  @return $name
